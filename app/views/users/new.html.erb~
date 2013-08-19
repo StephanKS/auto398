@@ -1,22 +1,63 @@
-<h1>Sign up</h1>
+# coding: utf-8
+<% provide(:title, 'Регистрация') %>
+<% provide(:active_page, 'signup') %>
+<h1>Регистрация</h1>
 
 <div class="row">
-  <div class="span6 offset3">
- /*   <%= form_for(@user) do |f| %>
+	<div class="span6 offset3">
+		<%= form_for(@user) do |f| %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+			<%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+			<!--Ник-->
+			<%= f.label "Ник" %>
+			<%= f.text_field :nickname %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+			<!--Имя-->
+			<%= f.label "Имя" %>
+			<%= f.text_field :name %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+			<!--Email-->
+			<%= f.label :email %>
+			<%= f.text_field :email %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
- */ </div>
+			<!--Пол-->
+			<%= f.label 'Пол:' %>
+			<%= f.radio_button(:gender, "Мужской") %>
+			<%= f.label(:gender_male, "Мужской") %>
+			<%= f.radio_button(:gender, "Женский") %>
+			<%= f.label(:gender_female, "Женский") %>
+
+			<!--Пароль-->
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+
+			<!--Подтверждение пароля-->
+			<%= f.label :password_confirmation, "Подтверждение пароля" %>
+			<%= f.password_field :password_confirmation %>
+
+			<!--Фотография-->
+			<%= f.label 'Ваша фотография:' %>
+			<%= f.file_field :avatar %>
+
+			<!--Телефон-->
+			<%= f.label "Телефон" %>
+			<%= f.text_field :phone_number %>
+
+			<% f.fields_for :autos do |auto_form| %>
+
+				<!--Марка авто-->
+				<%= auto_form.label "Марка автомобиля" %>
+				<%= auto_form.text_field :brand %>
+			
+				<!--Цвет авто-->
+				<%= auto_form.label "Цвет автомобиля" %>
+				<%= auto_form.text_field :color %>
+
+			<% end %>
+
+			<%= f.submit "Зарегистрировать", class: "btn btn-large btn-primary" %>
+
+		<% end %>
+	</div>
 </div>

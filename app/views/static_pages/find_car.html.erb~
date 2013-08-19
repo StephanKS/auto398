@@ -1,0 +1,33 @@
+# coding: utf-8
+<% provide(:title, 'Найти попутку') %>
+<% provide(:active_page, 'find_car') %>
+
+<h1>Найти попутку</h1>
+
+<h3>Список попуток:</h3>
+
+<table id="mytable" class="table table-fixed-header table-hover ">
+	
+	<thead class="header">
+		<th style="width:200px;"> Водитель </th>	
+		<th> Машина </th>
+		<th> Поездка </th>	
+		<th> Место</th>	
+		<th> </th>
+	</thead>
+
+	<tbody>
+		<%= render 'shared/feed' %>
+	</tbody>
+
+</table>
+
+  <script language="javascript" type="text/javascript" >
+    $(document).ready(function(){
+ 
+      // make the header fixed on scroll
+      $('.table-fixed-header').fixedHeader();
+    });
+  </script>
+
+

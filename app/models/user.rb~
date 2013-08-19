@@ -1,3 +1,4 @@
+# coding: utf-8
 # == Schema Information
 #
 # Table name: users
@@ -10,17 +11,55 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
-  has_secure_password
-  
-  before_save { |user| user.email = email.downcase }
 
-  validates :name,  presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+	attr_accessible :email, :name, :password, :password_confirmation, :avatar
+	attr_accessible :nickname, :gender, :phone_number, :auto_brand, :auto_color
 
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+	#Работа с сессиями
+	before_save :create_remember_token
+
+	#Связь с заявками на подвезти
+	has_many :liftups, dependent: :destroy
+
+	#Связь с машинами
+	has_one :auto, dependent: :destroy
+
+	#Ник
+	validates :nickname,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
+
+	#Имя
+	validates :name,  presence: true, length: { maximum: 50 }
+
+	#Email
+	before_save { |user| user.email = email.downcase }
+
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+		            uniqueness: { case_sensitive: false }
+
+	#Пол
+	validates :gender,  presence: true
+
+	#Пароль
+	has_secure_password
+	validates :password, length: { minimum: 6 }
+	validates :password_confirmation, presence: true
+
+	#Фото
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+	validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png'],
+									  :message => "Неверный формат изображения. Допустимые форматы: jpg, png."
+
+    def feed
+  	  Liftup.where("user_id = ?", id)
+  	end
+
+	private
+		
+		#Для сессий
+		def create_remember_token
+			self.remember_token = SecureRandom.urlsafe_base64
+		end
 
 end

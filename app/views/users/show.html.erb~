@@ -1,5 +1,13 @@
-<%= @user.name %>, <%= @user.email %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
+<% provide(:title, @user.name) %>
+<% provide(:active_page, "mypage") %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+    	<%= image_tag(@user.avatar.url(:thumb)) if @user.avatar? %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>

@@ -1,7 +1,9 @@
 Auto398::Application.routes.draw do
 
 	resources :users
-	
+	resources :sessions, only: [:new, :create, :destroy]	
+	resources :liftups, only: [:create, :destroy]
+
 	root to: 'static_pages#home'
 
 	match '/help',    to: 'static_pages#help'
@@ -9,6 +11,8 @@ Auto398::Application.routes.draw do
 	match '/find_car',    to: 'static_pages#find_car'
 	match '/faq',    to: 'static_pages#faq'
 	match '/signup',    to: 'users#new'
+	match '/signin',  to: 'sessions#new'
+	match '/signout', to: 'sessions#destroy', via: :delete	
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,55 @@
+<tr>
+	<td style="width:250px;">
+		<div class="avatar_thumb_liftups_list">
+			<% if feed_item.user.avatar? %>
+				<%= image_tag(feed_item.user.avatar.url(:thumb))  %>
+			<% else %>
+				Нет фотографии
+			<% end %>
+		</div>
+		<div class="liftup_list_user_info">
+			<ul>
+				<li><%= link_to feed_item.user.nickname, '#' %></li>
+				<li>Имя:&nbsp<%= feed_item.user.name %> </li>
+				<li>Пол:&nbsp<%= feed_item.user.gender %></li>
+				<li>Рейтинг:&nbsp10 <li>
+			</ul>
+		</div>
+	</td>
+
+	<td style="width:200px;"> 
+		<div class="liftup_list_auto">
+			<ul>
+				<li>Марка: <%= feed_item.user.auto_brand %> </li>
+				<li>Цвет: <%= feed_item.user.auto_color %> </li>
+				<li>Осталось мест: <%= feed_item.free_seats %> </li>
+				<li>Уже едут: 0</li>
+			</ul>
+		</div>
+	</td>
+
+	<td style="width:200px;"> 
+		<div class="liftup_list_ride">
+			<ul>
+				<li>Дата: <%= feed_item.start_date.strftime("%d.%m.%Y") %> </li>
+				<li>Время: <%= feed_item.start_date.strftime("%H:%M") %> </li>
+				<li>Высадка: <%= feed_item.final_stop %> </li>
+				<li>Конечный пункт:</li>
+			</ul>
+		</div>
+	</td>
+
+	<td class="liftup_list_auto"> 
+	</td>
+
+	<td>
+		<button type="button" class="btn btn-warning">Едем!</button>
+	</td>
+
+<!--<span >имя пользователя: <%= feed_item.user.name %></span>
+<span >комментарий: <%= feed_item.comment %></span>
+<span >дата: <%= feed_item.start_date %></span>
+<span >Конечная: <%= feed_item.final_stop %></span>
+<span >Свободных мест: <%= feed_item.free_seats %></span>
+-->
+</tr>

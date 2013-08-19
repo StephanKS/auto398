@@ -1,63 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Попутки Троицк-Москва</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
+	<title><%= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<%= render 'layouts/shim' %>
+
 </head>
-  <body>
 
-	<header>
+<body>
 
-		<div id="header_line">
-		    <div class="container">
-				
-				<div class="row">
-					<div class="span6">
-					    <%= link_to "ВеселоеАвто", root_path, id: "logo" %>
-					</div>
-					<div class="span4">
-						1
-					</div>
-					<div class="span2 col-offset-4">
-					    <%= link_to "войти", root_path, id: "logo" %>
-					</div>
-				</div>
-
-			</div> 
-		</div> 
-
-		<div id="header_line2">
-
-		    <div class="container">
-			
-				<div class="navbar">
-
-					<ul class="nav navbar-nav">
-						<li class="active"><%= link_to "Главная",    root_path %></li>
-						<li><%= link_to "Найти пассажиров",    find_passengers_path %></li>
-						<li><%= link_to "Найти попутку",    find_car_path %></li>
-						<li><%= link_to "ЧаВо", faq_path %></li>
-						<li><%= link_to "Регистрация", signup_path %></li>
-					</ul>
-				</div>	
-
-			</div>
-		</div>
-
-	</header>
-
-
+	<%= render 'layouts/header' %>
     <div class="container">
-      <%= yield %>
-<!--	
-	  <%= render 'layouts/footer' %>
-	  <%= debug(params) if Rails.env.development? %>
-    -->
+	  
+		<% russian_strings = ["Поздравляем с успешной регистрацией!", "Invalid email/password combination"] %>
+
+		<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>"><%= russian_strings[value] %></div>
+		<% end %>
+
+		<%= yield %>
+
+		<!--	
+		<%= render 'layouts/footer' %>
+		-->
+
+		<%= debug(params) if Rails.env.development? %>
+   
 	</div>
-  </body>
+
+</body>
 </html>

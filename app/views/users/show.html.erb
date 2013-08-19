@@ -1,9 +1,11 @@
 <% provide(:title, @user.name) %>
+<% provide(:active_page, "mypage") %>
+
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for @user %>
+    	<%= image_tag(@user.avatar.url(:medium)) if @user.avatar? %>
         <%= @user.name %>
       </h1>
     </section>

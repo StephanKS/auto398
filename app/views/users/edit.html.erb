@@ -1,0 +1,61 @@
+<% provide(:title, "Изменить настройки") %>
+<% provide(:active_page, 'mypage') %>
+
+<h1>Измените ваши настройки</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+
+		<%= form_for(@user) do |f| %>
+      
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<!--Ник-->
+			<%= f.label "Ник" %>
+			<%= f.text_field :nickname %>
+
+			<!--Имя-->
+			<%= f.label "Имя" %>
+			<%= f.text_field :name %>
+
+			<!--Email-->
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+
+			<!--Пол-->
+			<%= f.label 'Пол:' %>
+			<%= f.radio_button(:gender, "Мужской") %>
+			<%= f.label(:gender_male, "Мужской") %>
+			<%= f.radio_button(:gender, "Женский") %>
+			<%= f.label(:gender_female, "Женский") %>
+
+			<!--Пароль-->
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+
+			<!--Подтверждение пароля-->
+			<%= f.label :password_confirmation, "Подтверждение пароля" %>
+			<%= f.password_field :password_confirmation %>
+
+			<!--Фотография-->
+			<%= f.label 'Ваша фотография:' %>
+			<%= f.file_field :avatar %>
+
+			<!--Телефон-->
+			<%= f.label "Телефон" %>
+			<%= f.text_field :phone_number %>
+
+			<!--Марка авто-->
+			<%= f.label "Марка автомобиля" %>
+			<%= f.text_field :auto_brand %>
+			
+			<!--Цвет авто-->
+			<%= f.label "Цвет автомобиля" %>
+			<%= f.text_field :auto_color %>
+
+			<%= f.submit "Сохранить изменения", class: "btn btn-large btn-primary" %>
+
+		<% end %>
+
+  </div>
+</div>

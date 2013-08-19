@@ -1,0 +1,85 @@
+<header>
+
+	<div id="header_line">
+	    <div class="container">
+			
+			<div class="row">
+				<div class="span6">
+				    <%= link_to "ДоброеАвто", root_path, id: "logo" %>
+				</div>
+
+			<!--	<div class="span2 offset4">
+				    <%= link_to "войти", root_path, id: "logo" %>
+				</div> -->
+			</div>
+
+		</div> 
+	</div> 
+
+	<div id="header_line2">
+
+	    <div class="container">
+		
+			<div class="navbar">
+
+				<ul class="nav navbar-nav" role="navigation">
+
+					
+					<li class="<%= generate_active_class("Home", yield(:active_page)) %>" >
+						<%= link_to "Главная",    root_path %>
+					</li>
+
+					<li class="<%= generate_active_class("find_car", yield(:active_page)) %>" >
+						<%= link_to "Найти попутку",    find_car_path %>
+					</li>
+
+					<li class="<%= generate_active_class("find_passengers", yield(:active_page)) %>">
+						<%= link_to "Подвезти пассажиров",    find_passengers_path %>
+					</li>
+
+					<li class="<%= generate_active_class("faq", yield(:active_page)) %>">
+						<%= link_to "ЧаВо", faq_path %>
+					</li>
+
+					<% if !signed_in? %>
+						<li class="<%= generate_active_class("signup", yield(:active_page)) %>">
+							<%= link_to "Регистрация", signup_path %>
+						</li>
+					<% end %>
+
+					<% if signed_in? %>
+						  
+						<!--<li><%= link_to "Users", users_path %></li>-->
+					 
+						<li id="fat-menu" class="<%= generate_active_class("mypage", yield(:active_page)) %>">
+
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								Моя страница <b class="caret"></b>
+							</a>
+
+							<ul class="dropdown-menu">
+
+								<li><%= link_to "Посмотреть", current_user %></li>
+								<li><%= link_to "Изменить", edit_user_path(current_user) %></li>
+								<li class="divider"></li>
+								<li>
+								<%= link_to "Выйти", signout_path, method: "delete" %>
+								</li>
+
+							</ul>
+						</li>
+
+					<% else %>
+						<li class="<%= generate_active_class("signin", yield(:active_page)) %>">
+							<%= link_to "Войти", signin_path %>
+						</li>
+					<% end %>
+
+
+				</ul>
+			</div>	
+
+		</div>
+	</div>
+
+</header>

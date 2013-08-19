@@ -1,21 +1,48 @@
+<% provide(:active_page, 'Home') %>
+
 <div class="container">
 	<div class="row">
 		<div class="span12">
 			<h1>Как это работает</h1> 
-			<p>Небольшое объяснение что к чему</p>
+			<p>Каждое утро тысячи пассажиров едут из Троицка в Москву, стоя в переполненных автобусах, 
+			   тем временем сотни водителей тратят деньги на бензин, дорожающий с каждым днем. Мы хотим помочь жителям
+				нашего города добираться до работы дешевле и комфортнее.
+			</p>
+			<p>На нашем сайте пассажиры могут <%= link_to "найти попутку", find_car_path %>, а водители 
+				<%= link_to "сообщить о своем желании подвезти пассажиров",    find_passengers_path %> 
+				 за определенное вознаграждение. У каждого пользователя сайта есть личная страница и рейтинг, 
+				 помогающие Вам выбирать людей, с которыми вы поедете.
+			</p>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="span6">
-			<h1>Пассажирам</h1> 
-			<p>blablabla</p>
-			<h1><button type="button" class="btn btn-warning">Найти попутку</button><h1>
+			<h1>Пассажиру</h1> 
+
+			<ul class="my_bonus_list">
+				<li>Едет в комфортных условиях</li>
+				<li>Не дороже, чем на автобусе</li>
+				<li>Едет с хорошим водителем</li>
+			</ul>	
+
+			<div class="center">
+				<a href=<%= find_car_path %> class="btn btn-warning">Найти попутку</a>
+			</div>
+
 		</div>
 		<div class="span6">
-			<h1>Водителям</h1> 
-			<p>blablabla</p>
-			<h1><button type="button" class="btn btn-warning">Найти пассажира</button><h1>
+			<h1>Водителю</h1> 
+			<ul class="my_bonus_list">
+				<li>Окупает затраты на бензин</li>
+				<li>Помогает людям</li>
+				<li>Едет с хорошими пассажирами</li>
+			</ul>	
+
+			<div class="center">
+				<a href=<%= find_passengers_path %> class="btn btn-warning">Подвезти пассажиров</a>
+			</div>
+
 		</div>
 	</div>
 

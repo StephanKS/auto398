@@ -1,0 +1,19 @@
+ru: 
+  activerecord: 
+    attributes: 
+      user: 
+        password_confirmation: "Подтверждение пароля"
+        password_digest: "Пароль"
+        name: "Имя"
+        nickname: "Ник"
+        password: Пароль
+        avatar: "Моя фотография"
+
+      sessions: 
+        Password: Пароль
+        password: Пароль
+
+    models: 
+      user: Пользователь
+
+
